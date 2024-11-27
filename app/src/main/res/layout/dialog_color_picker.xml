@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:columnCount="6"
+    android:padding="16dp"
+    android:background="@android:color/black"
+    android:id="@+id/color_grid">
+
+    <View
+        android:layout_width="40dp"
+        android:layout_height="50dp"
+        android:background="#FFFFFF"
+        android:layout_margin="8dp"
+        android:tag="#FFFFFF"
+        android:clickable="true" />
+
+    <View
+        android:layout_width="40dp"
+        android:layout_height="50dp"
+        android:background="#FFFF99"
+        android:layout_margin="8dp"
+        android:tag="#FFFF99"
+        android:clickable="true" />
+
+    <View
+        android:layout_width="40dp"
+        android:layout_height="50dp"
+        android:background="#FFC0CB"
+        android:layout_margin="8dp"
+        android:tag="#FFC0CB"
+        android:clickable="true" />
+
+    <View
+        android:layout_width="40dp"
+        android:layout_height="50dp"
+        android:background="#ADD8E6"
+        android:layout_margin="8dp"
+        android:tag="#ADD8E6"
+        android:clickable="true" />
+
+    <View
+        android:layout_width="40dp"
+        android:layout_height="50dp"
+        android:background="#FFF0F5"
+        android:layout_margin="8dp"
+        android:tag="#FFF0F5"
+        android:clickable="true" />
+    <View
+        android:layout_width="40dp"
+        android:layout_height="50dp"
+        android:background="#BDFCC9"
+        android:layout_margin="8dp"
+        android:tag="#BDFCC9"
+        android:clickable="true" />
+
+</GridLayout>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- 保存菜单项 -->
+    <item
+        android:id="@+id/menu_save"
+        android:icon="@drawable/ic_menu_save"
+        android:title="保存"
+        android:showAsAction="ifRoom|withText"
+        android:padding="8dp" />
+
+    <!-- 撤销菜单项 -->
+    <item
+        android:id="@+id/menu_revert"
+        android:icon="@drawable/ic_menu_revert"
+        android:title="撤销"
+        android:showAsAction="ifRoom|withText"
+        android:padding="8dp" />
+
+    <!-- 删除菜单项 -->
+    <item
+        android:id="@+id/menu_delete"
+        android:icon="@drawable/ic_menu_delete"
+        android:title="删除"
+        android:showAsAction="ifRoom|withText"
+
+        android:padding="8dp" />
+
+    <!-- 输出菜单项 -->
+    <item
+        android:id="@+id/menu_output"
+        android:title="导出"
+        android:showAsAction="never"
+        android:padding="8dp" />
+
+    <!-- 更改背景颜色菜单项 -->
+    <item
+        android:id="@+id/menu_change_background"
+        android:title="选择背景颜色"
+        android:showAsAction="never"
+        android:padding="8dp" />
+
+
+</menu>
