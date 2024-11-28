@@ -200,6 +200,7 @@ public class NotesList extends ListActivity {
                 getSystemService(Context.CLIPBOARD_SERVICE);
 
 
+
         MenuItem mPasteItem = menu.findItem(R.id.menu_paste);
 
         // If the clipboard contains an item, enables the Paste option on the menu.
@@ -286,32 +287,64 @@ public class NotesList extends ListActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-        case R.id.menu_add:
-          /*
-           * Launches a new Activity using an Intent. The intent filter for the Activity
-           * has to have action ACTION_INSERT. No category is set, so DEFAULT is assumed.
-           * In effect, this starts the NoteEditor Activity in NotePad.
-           */
-           startActivity(new Intent(Intent.ACTION_INSERT, getIntent().getData()));
-           return true;
-        case R.id.menu_paste:
-          /*
-           * Launches a new Activity using an Intent. The intent filter for the Activity
-           * has to have action ACTION_PASTE. No category is set, so DEFAULT is assumed.
-           * In effect, this starts the NoteEditor Activity in NotePad.
-           */
-          startActivity(new Intent(Intent.ACTION_PASTE, getIntent().getData()));
-          return true;
-        //添加搜素
-        case R.id.menu_search:
-          Intent intent = new Intent();
-          intent.setClass(NotesList.this,NoteSearch.class);
-          NotesList.this.startActivity(intent);
-          return true;
+            case R.id.menu_add:
+              /*
+               * Launches a new Activity using an Intent. The intent filter for the Activity
+               * has to have action ACTION_INSERT. No category is set, so DEFAULT is assumed.
+               * In effect, this starts the NoteEditor Activity in NotePad.
+               */
+               startActivity(new Intent(Intent.ACTION_INSERT, getIntent().getData()));
+               return true;
+            case R.id.menu_paste:
+              /*
+               * Launches a new Activity using an Intent. The intent filter for the Activity
+               * has to have action ACTION_PASTE. No category is set, so DEFAULT is assumed.
+               * In effect, this starts the NoteEditor Activity in NotePad.
+               */
+              startActivity(new Intent(Intent.ACTION_PASTE, getIntent().getData()));
+              return true;
+            //添加搜素
+            case R.id.menu_search:
+              Intent intent = new Intent();
+              intent.setClass(NotesList.this,NoteSearch.class);
+              NotesList.this.startActivity(intent);
+              return true;
+            // 按创建时间排序
+
+            case R.id.menu_sort1:
+                cursor = managedQuery(
+                        getIntent().getData(),            // 获取URI
+                        PROJECTION,                      // 查询字段
+                        null,                            // 没有 WHERE 条件
+                        null,                            // 没有参数
+                        NotePad.Notes._ID                // 按 ID 排序
+                );
+                break;
+
+            case R.id.menu_sort2:
+                // 按修改时间排序
+                cursor = managedQuery(
+                        getIntent().getData(),
+                        PROJECTION,
+                        null,
+                        null,
+                        NotePad.Notes.DEFAULT_SORT_ORDER // 按修改时间排序
+                );
+                break;
 
             default:
             return super.onOptionsItemSelected(item);
         }
+        // 更新适配器
+        adapter = new MyCursorAdapter(
+                this,
+                R.layout.noteslist_item, // 适配器布局
+                cursor,                  // 更新的cursor
+                dataColumns,             // 数据列
+                viewIDs                  // 显示列ID
+        );
+        setListAdapter(adapter);  // 设置新适配器
+        return true;
     }
 
     /**
@@ -457,42 +490,7 @@ public class NotesList extends ListActivity {
 
             // Returns to the caller and skips further processing.
             return true;
-            //创建时间排序
-            case R.id.menu_sort1:
-                cursor = managedQuery(
-                        getIntent().getData(),
-                        PROJECTION,
-                        null,
-                        null,
-                        NotePad.Notes._ID
-                );
-                adapter = new MyCursorAdapter(
-                        this,
-                        R.layout.noteslist_item,
-                        cursor,
-                        dataColumns,
-                        viewIDs
-                );
-                setListAdapter(adapter);
-                return true;
-            //修改时间排序
-            case R.id.menu_sort2:
-                cursor = managedQuery(
-                        getIntent().getData(),
-                        PROJECTION,
-                        null,
-                        null,
-                        NotePad.Notes.DEFAULT_SORT_ORDER
-                );
-                adapter = new MyCursorAdapter(
-                        this,
-                        R.layout.noteslist_item,
-                        cursor,
-                        dataColumns,
-                        viewIDs
-                );
-                setListAdapter(adapter);
-                return true;
+
 
         default:
             return super.onContextItemSelected(item);

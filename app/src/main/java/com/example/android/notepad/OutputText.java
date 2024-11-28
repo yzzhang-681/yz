@@ -13,7 +13,6 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
-
 public class OutputText extends Activity {
     //要使用的数据库中笔记的信息
     private static final String[] PROJECTION = new String[] {
